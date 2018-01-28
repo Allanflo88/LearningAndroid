@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Exemplo com menus</string>
+    <string name="action_settings">Settings</string>
+    <string name="novo">Novo</string>
+    <string name="abrir">Abrir</string>
+    <string name="salvar">Salvar</string>
+    <string name="salvar_copia">Salvar cópia</string>
+    <string name="salvar_como">Salvar como</string>
+</resources>
