@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Nuvem de Receitas</string>
+    <string name="action_settings">Settings</string>
+    <string name="titulo">Título</string>
+    <string name="descr">Descrição</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="title_activity_visualizar">Visualizar</string>
+    <string name="title_activity_teste">TesteActivity</string>
+</resources>
