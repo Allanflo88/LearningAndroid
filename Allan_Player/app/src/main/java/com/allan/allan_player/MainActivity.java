@@ -14,10 +14,9 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MediaPlayer mediaPlayer;
+    private PlayerAdapter playerAdapter;
     private Button btPlay, btPause, btStop;
     private String TAG;
-    AssetFileDescriptor afd;
 
 
     @Override
@@ -25,35 +24,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mediaPlayer = new MediaPlayer();
+        playerAdapter = new PlayerAdapter(MainActivity.this);
         btPause = findViewById(R.id.btPause);
         btPlay = findViewById(R.id.btPlay);
         btStop = findViewById(R.id.btStop);
-        afd = getResources().openRawResourceFd(R.raw.you_give_love_a_bad_name);
 
-
-        try {
-            mediaPlayer.setDataSource(afd);
-            mediaPlayer.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
+        playerAdapter.initialize();
+        playerAdapter.loadMedia(R.raw.you_give_love_a_bad_name);
 
         btPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mediaPlayer.isPlaying()){
-                    mediaPlayer.pause();
-                }
+                playerAdapter.pause();
             }
         });
 
         btPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mediaPlayer.start();
+                playerAdapter.play();
 
             }
         });
@@ -61,13 +50,7 @@ public class MainActivity extends AppCompatActivity {
         btStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mediaPlayer.reset();
-                try {
-                    mediaPlayer.setDataSource(afd);
-                    mediaPlayer.prepare();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                playerAdapter.reset();
             }
         });
 
