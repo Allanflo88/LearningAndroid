@@ -44,7 +44,7 @@ public class RandomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         txtNumber = findViewById(R.id.txtNumber);
@@ -60,6 +60,13 @@ public class RandomActivity extends AppCompatActivity {
                 txtNumber.setText(color);
                 try{
                     linearLayout.setBackgroundColor(Color.parseColor(color));
+                    if(color == "#000000"){
+                        txtNumber.setTextColor(Color.parseColor("#ffffff"));
+                    }
+                    else{
+                        txtNumber.setTextColor(Color.parseColor("#000000"));
+
+                    }
                 }
                 catch (Exception e){
                     Log.w(TAG, color);

@@ -63,6 +63,10 @@ public class PickerActivity extends AppCompatActivity {
                     if(i == 0){
                         txtNumber.setTextColor(Color.parseColor("#ffffff"));
                     }
+                    else{
+                        txtNumber.setTextColor(Color.parseColor("#000000"));
+
+                    }
                 }
                 catch (Exception e){
                     Log.w(TAG, converter.intToString(i));
@@ -81,7 +85,7 @@ public class PickerActivity extends AppCompatActivity {
 
             }
         });
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
