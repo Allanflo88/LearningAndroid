@@ -48,8 +48,8 @@ public class ListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent add = new Intent(ListActivity.this, AddActivity.class);
-                startActivity(add);
+
+                startActivity(new Intent(ListActivity.this, AddActivity.class));
             }
         });
 
