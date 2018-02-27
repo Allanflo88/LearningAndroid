@@ -13,13 +13,16 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private LatLng location;
     private static final int request = 999;
+    private UiSettings mapSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +47,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        mapSettings = googleMap.getUiSettings();
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        location = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(location).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+        mapSettings.setZoomControlsEnabled(true);
+        mapSettings.setCompassEnabled(true);
+        mapSettings.setMapToolbarEnabled(true);
+        mapSettings.setZoomGesturesEnabled(true);
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
         } else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, request);
         }
+
+        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                location = new LatLng(latLng.latitude, latLng.longitude);
+                mMap.addMarker(new MarkerOptions().position(location));
+            }
+        });
     }
+
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
