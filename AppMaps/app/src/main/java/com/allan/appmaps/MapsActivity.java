@@ -68,6 +68,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onMapClick(LatLng latLng) {
                 location = new LatLng(latLng.latitude, latLng.longitude);
+                mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(location));
             }
         });
