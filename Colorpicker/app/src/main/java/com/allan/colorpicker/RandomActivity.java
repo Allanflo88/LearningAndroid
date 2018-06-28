@@ -32,7 +32,7 @@ public class RandomActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(),RandomActivity.class));
                     return true;
                 case R.id.navigation_favorites:
-
+                    startActivity(new Intent(getApplicationContext(), FavoritesActivity.class));
                     return true;
             }
             return false;

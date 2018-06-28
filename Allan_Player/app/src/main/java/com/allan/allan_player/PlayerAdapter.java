@@ -3,8 +3,11 @@ package com.allan.allan_player;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Environment;
 
 import java.io.IOException;
+import java.net.URI;
 
 /**
  * Created by allan on 18/02/18.
@@ -29,12 +32,16 @@ public class PlayerAdapter {
     public void loadMedia(int resourdeId){
         this.resourceId = resourdeId;
 
+        System.out.println(Environment.getExternalStorageDirectory().getAbsoluteFile());
+        ExternalStorage ext = new ExternalStorage("/storage/emulated/0/sdcard/Download/teste.mp3");
+
+        Uri uri = ext.getMusic();
         initialize();
 
         AssetFileDescriptor assetFileDescriptor = context.getResources().openRawResourceFd(resourdeId);
 
         try {
-            mediaPlayer.setDataSource(assetFileDescriptor);
+            mediaPlayer.setDataSource(context.getApplicationContext(),uri);
         } catch (IOException e) {
             e.printStackTrace();
         }

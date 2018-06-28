@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context="com.allan.colorpicker.PickerActivity">
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:backgroundTint="@android:color/transparent"
+        app:elevation="0dp"
+        app:srcCompat="@android:drawable/btn_star_big_off"
+        tools:layout_editor_absoluteX="371dp"
+        tools:layout_editor_absoluteY="506dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,17 +50,18 @@
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/txtNumber"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="Use the seekbar to  chose a color"
             android:textAlignment="center"
             android:textSize="36sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:gravity="center"/>
+
     </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView

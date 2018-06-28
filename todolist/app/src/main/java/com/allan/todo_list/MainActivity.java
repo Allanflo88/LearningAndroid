@@ -46,7 +46,15 @@ public class MainActivity extends AppCompatActivity {
         lstTodo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                index = (int)l;
+                startActivity(new Intent(getApplicationContext(), DetailsActivity.class).putExtra("todo", adapter.getItem((int)l)));
+
+            }
+        });
+
+        lstTodo.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                index = (int)id;
                 AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
                 dialog.setTitle("Confirmação");
                 dialog.setMessage("Deseja excluir?");
@@ -60,9 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 });
                 dialog.setNegativeButton("Cancelar", null);
                 dialog.show();
-
-
-
+                return false;
             }
         });
 

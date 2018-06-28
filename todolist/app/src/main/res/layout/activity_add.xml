@@ -25,21 +25,11 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <EditText
-            android:id="@+id/edtTitulo"
+        <include
+            layout="@layout/content_todo"
+            layout_width="match_parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Título"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/edtSubtitulo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Subtitulo"
-            android:inputType="textPersonName" />
+            android:layout_height="match_parent" />
 
         <Button
             android:id="@+id/btnSalvar"

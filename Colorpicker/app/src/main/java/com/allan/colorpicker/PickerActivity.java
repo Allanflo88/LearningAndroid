@@ -6,9 +6,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ public class PickerActivity extends AppCompatActivity {
     private String color, TAG;
     private LinearLayout layout;
     private Converter converter;
+    private FloatingActionButton favorite;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -28,13 +31,13 @@ public class PickerActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_picker:
-                        startActivity(new Intent(getApplicationContext(),PickerActivity.class));
+                    startActivity(new Intent(getApplicationContext(),PickerActivity.class));
                     return true;
                 case R.id.navigation_random:
-                        startActivity(new Intent(getApplicationContext(),RandomActivity.class));
+                    startActivity(new Intent(getApplicationContext(),RandomActivity.class));
                     return true;
                 case R.id.navigation_favorites:
-
+                    startActivity(new Intent(getApplicationContext(), FavoritesActivity.class));
                     return true;
             }
             return false;
@@ -51,6 +54,15 @@ public class PickerActivity extends AppCompatActivity {
         skbSearch = findViewById(R.id.skbSearch);
         layout = findViewById(R.id.layout);
         converter = new Converter();
+
+        favorite = findViewById(R.id.floatingActionButton);
+
+        favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         skbSearch.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 

@@ -15,6 +15,7 @@ public class Conexao{
 
     private DbHelper helper;
     private SQLiteDatabase db;
+    static String select = "SELECT * FROM todo";
 
     public Conexao(Context context) {
         helper = new DbHelper(context);
@@ -22,7 +23,7 @@ public class Conexao{
 
     public ArrayAdapter<String> getData(ArrayAdapter<String> adapter){
         db = helper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM todo",null);
+        Cursor cursor = db.rawQuery(select,null);
         cursor.moveToFirst();
         while(cursor.moveToNext()){
             adapter.add(cursor.getString(cursor.getColumnIndexOrThrow("titulo")));
@@ -42,14 +43,14 @@ public class Conexao{
 
     public void delete(long item){
         db = helper.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM todo",null);
+        Cursor cursor = db.rawQuery(select,null);
         cursor.move((int)item);
         db.delete("todo", "id = " + cursor.getString(cursor.getColumnIndexOrThrow("id")), null);
     }
 
     public int getLast(){
         db = helper.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM todo", null);
+        Cursor cursor = db.rawQuery(select, null);
         cursor.moveToLast();
         return cursor.getInt(cursor.getColumnIndexOrThrow("id")) + 1;
     }
